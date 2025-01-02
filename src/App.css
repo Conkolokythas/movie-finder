@@ -1,0 +1,209 @@
+/*Zen Dots Static Font*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&family=Zen+Dots&display=swap');
+
+body {
+    min-height: 100vh;
+    background: rgb(51,43,43);
+    background: linear-gradient(0deg, rgba(51,43,43,1) 11%, rgba(76,92,108,1) 68%);
+    color: #ffffff;
+}
+
+
+.top {
+  text-align: center;
+  font-family: "Zen Dots", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 1.5rem;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.header {
+  margin: 2rem 0 2rem 0;
+}
+
+.header-body {
+  display: flex;
+}
+
+.search-field {
+  text-align: center;
+  flex-grow: 2;
+}
+    .search-field input {
+        width: 100%;
+        height: 2.5rem;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: none;
+        box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    }
+
+
+        .search-field input[type=text] {
+            padding: 0 20px 0 20px;
+            background-color: #62778d;
+            color: #ffffff;
+        }
+
+    .search-field input::placeholder {
+        color: #ffffff;
+    }
+
+
+.submit button {
+    height: 2.5rem;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 0 10px 0 10px;
+    border: none;
+    background-color: #2a333c;
+    color: #ffffff;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.empty {
+  padding: 0.5em;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+
+.results {
+  text-align: center;
+}
+
+.res-tab {
+  display: inline-block;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+
+.my-card {
+    position: relative;
+    width: 200px;
+    height: 348px;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 20px;
+    margin: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 14px;
+    transition: 0.2s;
+    background-color: #191e22;
+}
+
+.my-card img {
+  width: 200px;
+  height: 280px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.my-card span {
+   padding: 0 10px 0 10px;
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.m-type {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #8a2be2;
+    color: #ffffff;
+}
+
+.my-card:hover {
+    transform: rotateY(-10deg);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.modal-con {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+}
+/*The modal*/
+
+.modal-90w {
+    width: 90%;
+    max-width: none !important;
+}
+
+
+.movie-img {
+    order: 1;
+}
+
+.movie-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 1em 0 1em 1em;
+    order: 2;
+    color: #000000;
+}
+
+.movie-info span {
+    font-weight: 700;
+}
+
+.movie-title {
+    font-size: 24px;
+}
+
+.imdb-btn img{
+    width: 3rem;
+}
+
+#footer {
+    background-color: #000000;
+}
+
+@media (max-width: 595px) {
+    .flex {
+        flex-direction: column;
+    }
+}
