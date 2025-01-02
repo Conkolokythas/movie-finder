@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Conkolokythas/.github.io/movie-finder/static/css/main.c76008ea.css",
+    "main.js": "/Conkolokythas/.github.io/movie-finder/static/js/main.475710f0.js",
+    "static/js/453.72162a36.chunk.js": "/Conkolokythas/.github.io/movie-finder/static/js/453.72162a36.chunk.js",
+    "static/media/imdb.svg": "/Conkolokythas/.github.io/movie-finder/static/media/imdb.56d6ba6bba7a746b9f3e818e742d7803.svg",
+    "index.html": "/Conkolokythas/.github.io/movie-finder/index.html",
+    "main.c76008ea.css.map": "/Conkolokythas/.github.io/movie-finder/static/css/main.c76008ea.css.map",
+    "main.475710f0.js.map": "/Conkolokythas/.github.io/movie-finder/static/js/main.475710f0.js.map",
+    "453.72162a36.chunk.js.map": "/Conkolokythas/.github.io/movie-finder/static/js/453.72162a36.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c76008ea.css",
+    "static/js/main.475710f0.js"
+  ]
+}
