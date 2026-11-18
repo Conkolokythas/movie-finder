@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Card from './components/Card'
-
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,14 +15,20 @@ function App() {
    
 
 
-   const searchMovies = async (title) => {
+   /*const searchMovies = async (title) => {
        const response = await fetch(`${api_url}&s=${title}`);
        const data = await response.json();
        setMovies(data.Search);
        console.log(data.Search);
 
-   }
+   }*/
 
+    const searchMovies = async (title) => {
+        const response = axios.get(api_url + '&s=' + title);
+        const data = await response.json();
+        setMovies(data.Search);
+        console.log(data.Search);
+   }
 
 
   /*  useEffect(() => {
