@@ -1,7 +1,5 @@
-import React from 'react'
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
-//import Button from 'react-bootstrap/Button';
 import imdbLogo from './imdb.svg';
 
 
@@ -29,7 +27,7 @@ const Card = ({ movie }) => {
             <div className="res-tab" onClick={() => { setShow(true); takeMovieInfo(movie.Title) }}>
                 <div className="my-card">
                     <span class="m-type">{movie.Type}</span>
-              <img src={movie.Poster} />
+              <img src={movie.Poster} alt="movie poster"/>
               
               <p><span>{movie.Title}</span></p>
               <p><span>{movie.Year}</span></p>
@@ -55,7 +53,7 @@ const Card = ({ movie }) => {
                             <div><span>BoxOffice:</span> {movieInfo.BoxOffice}</div>
                             <div><span>Plot:</span> {movieInfo.Plot}</div>
                             <div><span>Runtime:</span> {movieInfo.Runtime}</div>
-                            <div className="imdb-btn"><a href={'//www.imdb.com/title/' + movieInfo.imdbID} target="_blank"><img src={imdbLogo} /></a></div>
+                            <div className="imdb-btn"><a href={'//www.imdb.com/title/' + movieInfo.imdbID} target="_blank" rel="noreferrer"><img src={imdbLogo} /></a></div>
                         </div>
                     </div>
                 </Modal.Body>
