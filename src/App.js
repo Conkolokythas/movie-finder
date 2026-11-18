@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './App.css';
 
-const api_url = 'http://www.omdbapi.com?apikey=9dd420dc'
+const api_url = 'https://m-finder-s.netlify.app'
 
 function App() {
 
