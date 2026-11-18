@@ -14,26 +14,12 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    
 
-
-   /*const searchMovies = async (title) => {
-       const response = await fetch(`${api_url}&s=${title}`);
-       const data = await response.json();
-       setMovies(data.Search);
-       console.log(data.Search);
-
-   }*/
-
     const searchMovies = async (title) => {
         const response = axios.get(api_url + '?s=' + title);
         const data = await response;
         setMovies(data.Search);
         console.log(data.Search);
    }
-
-
-  /*  useEffect(() => {
-            searchMovies();
-        }, []);*/
 
 
   return (
@@ -68,7 +54,7 @@ function App() {
                       ))}
                   </div>) : (
                       <div className="empty">
-                          <span>No movies are found.</span>
+                          <span>No movies were found.</span>
                       </div>
                   )}
 
