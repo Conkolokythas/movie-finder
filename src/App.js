@@ -17,8 +17,8 @@ function App() {
     const searchMovies = async (title) => {
         const response = axios.get(api_url + '?s=' + title);
         console.log(response);
-        setMovies(response.data.Search);
-        console.log(response.data.Search);
+        setMovies(response.Search);
+        console.log(response.Search);
    }
 
 
