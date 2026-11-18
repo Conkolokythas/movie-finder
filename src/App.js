@@ -24,8 +24,8 @@ function App() {
    }*/
 
     const searchMovies = async (title) => {
-        const response = axios.get(api_url + '&s=' + title);
-        const data = await response.json();
+        const response = axios.get(api_url + '?s=' + title);
+        const data = await response;
         setMovies(data.Search);
         console.log(data.Search);
    }
