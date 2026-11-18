@@ -19,7 +19,7 @@ function App() {
         console.log(response);
         /*const data = response.then((response) => response.data);*/
         setMovies(response.data);
-        console.log(response.data);
+        console.log(response.data.Search);
    }
 
 
