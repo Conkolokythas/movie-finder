@@ -42,7 +42,7 @@ const Card = ({ movie }) => {
                 <Modal.Body className="p-0">
                     <div className="modal-content flex">
                         <div className="movie-img">
-                            <img src={movieInfo.Poster} />
+                            <img src={movieInfo.Poster} alt="movie poster"/>
                         </div>
                         <div className="movie-info">
                             <div className="movie-title"><span>{movieInfo.Title}</span></div>
@@ -53,7 +53,7 @@ const Card = ({ movie }) => {
                             <div><span>BoxOffice:</span> {movieInfo.BoxOffice}</div>
                             <div><span>Plot:</span> {movieInfo.Plot}</div>
                             <div><span>Runtime:</span> {movieInfo.Runtime}</div>
-                            <div className="imdb-btn"><a href={'//www.imdb.com/title/' + movieInfo.imdbID} target="_blank" rel="noreferrer"><img src={imdbLogo} /></a></div>
+                            <div className="imdb-btn"><a href={'//www.imdb.com/title/' + movieInfo.imdbID} target="_blank" rel="noreferrer"><img src={imdbLogo} alt="imdb logo"/></a></div>
                         </div>
                     </div>
                 </Modal.Body>
