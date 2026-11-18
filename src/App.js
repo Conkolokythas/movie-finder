@@ -18,8 +18,8 @@ function App() {
         const response = axios.get(api_url + '?s=' + title);
         console.log(response);
         const data = response.then((response) => response.data);
-        setMovies(data.Search);
-        console.log(data.Search);
+        setMovies(data);
+        console.log(data);
    }
 
 
