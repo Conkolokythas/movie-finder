@@ -9,17 +9,24 @@ const Card = ({ movie }) => {
     const [show, setShow] = useState(false);
     const [movieInfo, setMovieInfo] = useState([]);
 
-    const api_url = 'http://www.omdbapi.com?apikey=9dd420dc'
+    //const api_url = 'http://www.omdbapi.com?apikey=9dd420dc'
+
+    const api_url = 'https://m-finder-s.netlify.app';
 
 
-    const takeMovieInfo = async (title) => {
+    /*const takeMovieInfo = async (title) => {
         console.log(title)
         const response = await fetch(`${api_url}&t=${title}`);
-        //console.log(response)
         const data = await response.json();
         setMovieInfo(data);
-        //console.log(data);
-    }
+    }*/
+
+    const takeMovieInfo = async (title) => {
+        const response = await axios.get(api_url + '?t=' + title);
+        setMovieInfo(response.data.Search);
+        console.log(response.data.Search)
+   }
+
 
 
     return (
@@ -53,7 +60,7 @@ const Card = ({ movie }) => {
                             <div><span>BoxOffice:</span> {movieInfo.BoxOffice}</div>
                             <div><span>Plot:</span> {movieInfo.Plot}</div>
                             <div><span>Runtime:</span> {movieInfo.Runtime}</div>
-                            <div className="imdb-btn"><a href={'//www.imdb.com/title/' + movieInfo.imdbID} target="_blank" rel="noreferrer"><img src={imdbLogo} alt="imdb logo"/></a></div>
+                            <div className="imdb-btn"><a href={'//www.imdb.com/title/' + movieInfo.imdbID} target="_blank" rel="noreferrer"><img src={imdbLogo} alt="imdb Logo"/></a></div>
                         </div>
                     </div>
                 </Modal.Body>
