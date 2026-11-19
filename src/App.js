@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import './App.css';
 
 const api_url = 'https://m-finder-s.netlify.app';
-const response = null;
+let response = null;
 
 function App() {
 
