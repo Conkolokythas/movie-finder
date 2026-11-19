@@ -22,7 +22,7 @@ function App() {
    }
 
    const pagination = async (search, page) => {
-        response = await axios.get(api_url + '?s=' + search + '&page=' + page);
+        response = await axios.get(api_url + '/page' + '?s=' + search + '&page=' + page);
         setMovies(response.data.Search);
         console.log(response);
    }
