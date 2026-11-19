@@ -9,7 +9,7 @@ const Card = ({ movie }) => {
     const [show, setShow] = useState(false);
     const [movieInfo, setMovieInfo] = useState([]);
 
-    //const api_url = 'http://www.omdbapi.com?apikey=9dd420dc'
+    console.log(movie); 
 
     const api_url = 'https://m-finder-s.netlify.app';
 
@@ -24,8 +24,8 @@ const Card = ({ movie }) => {
     const takeMovieInfo = async (title) => {
         const response = await axios.get(api_url + '?t=' + title);
         console.log(response);
-        setMovieInfo(response.data.Search);
-        console.log(response.data.Search)
+        setMovieInfo(response.data);
+        console.log(response.data)
    }
 
 
