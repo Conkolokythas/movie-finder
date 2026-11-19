@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './App.css';
 
-const api_url = 'https://m-finder-s.netlify.app';
+const api_url = 'https://m-finder-s.netlify.app/';
 let response = null;
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
    }
 
    const pagination = async (search, page) => {
-        response = await axios.get(api_url + '/page' + '?s=' + search + '&page=' + page);
+        response = await axios.get(api_url + 'page' + '?s=' + search + '&page=' + page);
         setMovies(response.data.Search);
         console.log(response);
    }
