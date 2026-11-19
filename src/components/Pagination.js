@@ -1,12 +1,12 @@
 
-const Pagination = ({ results, term, api}) => {
+const Pagination = ({ results, term, api, route}) => {
 
 let pages = results/2;
 let items = [];
 
 for (let i = 0; i <= pages; i++) {
   items.push(
-    <a href={api + '/page' + '?s=' + term + '&page=' + i}>{i}</a>
+    <a href={api + route + '?s=' + term + '&page=' + i}>{i}</a>
   );
 }
 

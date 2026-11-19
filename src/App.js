@@ -61,7 +61,7 @@ function App() {
                   ? (<div className="results">
                       {movies.map((movie) => ( <Card movie={movie} />))}
                       <button type='submit' onClick={() => pagination(searchTerm, 2)}>Next page</button>
-                      <Pagination results={totalResults} term={searchTerm} api={api_url}/>
+                      <Pagination results={totalResults} term={searchTerm} api={api_url} route={pageRoute}/>
                   </div>) : (
                       <div className="empty">
                           <span>No movies were found.</span>
