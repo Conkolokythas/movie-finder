@@ -9,14 +9,10 @@ const Card = ({ movie }) => {
     const [show, setShow] = useState(false);
     const [movieInfo, setMovieInfo] = useState([]);
 
-    console.log("This is the movie object"); 
-    console.log(movie); 
-
     const api_url = 'https://m-finder-s.netlify.app';
 
     const takeMovieInfo = async (title) => {
         const response = await axios.get(api_url + '?t=' + title);
-        console.log(response);
         setMovieInfo(response.data);
    }
 
