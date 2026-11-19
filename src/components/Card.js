@@ -23,6 +23,7 @@ const Card = ({ movie }) => {
 
     const takeMovieInfo = async (title) => {
         const response = await axios.get(api_url + '?t=' + title);
+        console.log(response);
         setMovieInfo(response.data.Search);
         console.log(response.data.Search)
    }
