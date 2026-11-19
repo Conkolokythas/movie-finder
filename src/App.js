@@ -6,7 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './App.css';
 
-const api_url = 'https://m-finder-s.netlify.app'
+const api_url = 'https://m-finder-s.netlify.app';
+const response = null;
 
 function App() {
 
@@ -14,8 +15,14 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    
 
-    const searchMovies = async (title) => {
-        const response = await axios.get(api_url + '?s=' + title);
+    const searchMovies = async (search) => {
+        response = await axios.get(api_url + '?s=' + search);
+        setMovies(response.data.Search);
+        console.log(response);
+   }
+
+   const pagination = async (search, page) => {
+        response = await axios.get(api_url + '?s=' + search + '&page=' + page);
         setMovies(response.data.Search);
         console.log(response);
    }
@@ -47,10 +54,8 @@ function App() {
               movies?.length > 0
 
                   ? (<div className="results">
-                      {movies.map((movie) => (
-                          <Card movie={movie} />
-
-                      ))}
+                      {movies.map((movie) => ( <Card movie={movie} />))}
+                      <button type='submit' onClick={() => pagination(searchTerm, 2)}>Next page</button>
                   </div>) : (
                       <div className="empty">
                           <span>No movies were found.</span>
