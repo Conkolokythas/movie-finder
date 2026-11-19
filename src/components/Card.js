@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import imdbLogo from './imdb.svg';
-
+import axios from 'axios';
 
 
 const Card = ({ movie }) => {
