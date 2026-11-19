@@ -14,23 +14,11 @@ const Card = ({ movie }) => {
 
     const api_url = 'https://m-finder-s.netlify.app';
 
-
-    /*const takeMovieInfo = async (title) => {
-        console.log(title)
-        const response = await fetch(`${api_url}&t=${title}`);
-        const data = await response.json();
-        setMovieInfo(data);
-    }*/
-
     const takeMovieInfo = async (title) => {
         const response = await axios.get(api_url + '?t=' + title);
         console.log(response);
         setMovieInfo(response.data);
-        console.log("This is the response data"); 
-        console.log(response.data)
    }
-
-
 
     return (
         <>
