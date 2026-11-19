@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import Card from './components/Card'
+import { useState } from 'react';
+import Card from './components/Card';
+import Pagination from './components/Pagination';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
@@ -14,17 +15,20 @@ function App() {
 
    const [movies, setMovies] = useState([]);
    const [searchTerm, setSearchTerm] = useState([]);
+   const [totalResults, setTotalResults] = useState(0);
    
 
     const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
         setMovies(response.data.Search);
+        setTotalResults(response.data.totalResults);
         console.log(response);
    }
 
    const pagination = async (search, page) => {
         response = await axios.get(api_url + pageRoute + '?s=' + search + '&page=' + page);
         setMovies(response.data.Search);
+        setTotalResults(response.data.totalResults);
         console.log(response);
    }
 
@@ -52,20 +56,21 @@ function App() {
    </Row>
 
           {
-              movies?.length > 0
+              totalResults?.length > 0
 
                   ? (<div className="results">
                       {movies.map((movie) => ( <Card movie={movie} />))}
                       <button type='submit' onClick={() => pagination(searchTerm, 2)}>Next page</button>
+                      <Pagination results={totalResults} term={searchTerm} api={api_url}/>
                   </div>) : (
                       <div className="empty">
                           <span>No movies were found.</span>
                       </div>
                   )}
 
-   
+                  
         
-            </div>
+    </div>
     );
 }//App
 
