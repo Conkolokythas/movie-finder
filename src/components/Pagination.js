@@ -6,7 +6,8 @@ let items = [];
 
 for (let i = 0; i <= pages; i++) {
   items.push(
-    <a href={api + route + '?s=' + term + '&page=' + i}>{i}</a>
+   // <a href={api + route + '?s=' + term + '&page=' + i}>{i}</a>
+   i
   );
 }
 
