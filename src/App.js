@@ -9,26 +9,33 @@ import './App.css';
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
 let response = null;
+let items = [];
 
 function App() {
 
    const [movies, setMovies] = useState([]);
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState();
+   const [currentPage, setCurrentPage] = useState();
    
 
     const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
-        console.log(response);
+        console.log(totalResults);
+        let pages = totalResults/10;
+        for (let i = 0; i <= pages; i++) {
+            items.push(i);
+        }
+        setCurrentPage(items[0]);
    }
 
    const pagination = async (page) => {
         response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
-        console.log(response);
+        console.log(totalResults);
    }
 
 
@@ -55,7 +62,7 @@ function App() {
    </Row>
 
           {
-              totalResults?.length > 0
+              movies?.length > 0
 
                   ? (<div className="results">
                       {movies.map((movie) => ( <Card movie={movie} />))}
@@ -70,13 +77,13 @@ function App() {
                     ?( 
                     
                     <div>                     
-                    <button onClick={() => pagination(2)}>Next page</button>
-                    <span>{totalResults/10/1}</span>
-                    <input type="text" placeholder="..." onChange={(e) => { pagination(e.target.value) }}/>
-                    <button onClick={() => pagination(2)}>Previus page</button>
-                    <span>{totalResults/10}</span>
+                    <button onClick={() => pagination(currentPage + 1)}>Next page</button>
+                    <span>{items[0]}</span>
+                    <input type="number" placeholder="..." onChange={(e) => { pagination(e.target.value) }}/>
+                    <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
+                    <span>{items.length + 1}</span>
                     </div>
-                    ) : (<span>1</span>)
+                    ) : (<span>{items.length}</span>)
                   }
         
     </div>
