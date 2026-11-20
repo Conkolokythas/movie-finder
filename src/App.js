@@ -20,7 +20,7 @@ function App() {
 
    useEffect(() => {
     //Runs on the first render
-        console.log(totalResults);
+        console.log(searchTerm);
     //And any time any dependency value changes
     }, [searchTerm]);
    
