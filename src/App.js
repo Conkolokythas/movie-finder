@@ -17,12 +17,18 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState();
+
+   useEffect(() => {
+    //Runs on the first render
+    console.log("Use effect" + totalResults);
+    //And any time any dependency value changes
+    }, [movies, totalResults]);
    
 
     const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
         setMovies(response.data.Search);
-        useEffect(() => { setTotalResults(response.data.totalResults) }, [])
+        setTotalResults(response.data.totalResults);
         console.log(totalResults);
         let pages = totalResults/10;
         for (let i = 0; i <= pages; i++) {
@@ -33,7 +39,7 @@ function App() {
 
    }
 
-   const pagination = async (page) => {
+    const pagination = async (page) => {
         response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
