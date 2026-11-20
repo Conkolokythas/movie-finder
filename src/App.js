@@ -69,11 +69,12 @@ function App() {
                   </div>) : (
                       <div className="empty">
                           <span>No movies were found.</span>
-                      </div>
-                  )}
+                      </div>)
+                      
+                      }
 
                   {
-                    totalResults?.length > 10 
+                    totalResults.length > 10 
                     ?( 
                     
                     <div>                     
