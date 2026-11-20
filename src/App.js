@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './App.css';
-import { div } from 'three/tsl';
 
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
