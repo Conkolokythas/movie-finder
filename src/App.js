@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './App.css';
+import { div } from 'three/tsl';
 
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
@@ -25,8 +26,8 @@ function App() {
         console.log(response);
    }
 
-   const pagination = async (search, page) => {
-        response = await axios.get(api_url + pageRoute + '?s=' + search + '&page=' + page);
+   const pagination = async (page) => {
+        response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
         console.log(response);
@@ -60,15 +61,25 @@ function App() {
 
                   ? (<div className="results">
                       {movies.map((movie) => ( <Card movie={movie} />))}
-                      <button type='submit' onClick={() => pagination(searchTerm, 2)}>Next page</button>
-                      <Pagination results={totalResults} term={searchTerm} api={api_url} route={pageRoute}/>
                   </div>) : (
                       <div className="empty">
                           <span>No movies were found.</span>
                       </div>
                   )}
 
-                  
+                  {
+                    totalResults?.length > 10 
+                    ?( 
+                    
+                    <div>                     
+                    <button onClick={() => pagination(2)}>Next page</button>
+                    <span>{totalResults/10/1}</span>
+                    <input type="text" placeholder="..." onChange={(e) => { pagination(e.target.value) }}/>
+                    <button onClick={() => pagination(2)}>Previus page</button>
+                    <span>{totalResults/10}</span>
+                    </div>
+                    ) : (<span>1</span>)
+                  }
         
     </div>
     );
