@@ -22,7 +22,7 @@ function App() {
     //Runs on the first render
         searchMovies();
     //And any time any dependency value changes
-    }, [searchTerm]);
+    }, [searchMovies]);
    
 
     const searchMovies = async (search) => {
