@@ -18,6 +18,7 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState();
 
+
    useEffect(() => {
     //Runs on the first render
         console.log(searchTerm);
@@ -83,7 +84,7 @@ function App() {
                       }
 
                   {
-                    totalResults.length > 10 
+                    totalResults > 10 
                     ?( 
                     <div>                     
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
