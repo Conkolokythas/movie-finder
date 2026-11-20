@@ -28,7 +28,7 @@ function App() {
         for (let i = 0; i <= pages; i++) {
             items.push(i);
         }
-        setCurrentPage(items[0]);
+        setCurrentPage(1);
         console.log("Current page:" + currentPage);
 
    }
@@ -82,7 +82,7 @@ function App() {
                     <div>                     
                     <span>Total titles found{ totalResults }</span>
                     <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
-                    <input type="number" placeholder="..." onChange={(e) => { pagination(e.target.value) }}/>
+                    <input type="number" placeholder="..." value={currentPage} onChange={(e) => { pagination(e.target.value) }}/>
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
                     <span>{items.length }</span>
                     </div>
