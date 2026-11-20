@@ -20,9 +20,9 @@ function App() {
 
    useEffect(() => {
     //Runs on the first render
-        searchMovies();
+        console.log(totalResults);
     //And any time any dependency value changes
-    }, [searchMovies]);
+    }, [searchTerm]);
    
 
     const searchMovies = async (search) => {
