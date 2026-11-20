@@ -15,7 +15,7 @@ function App() {
 
    const [movies, setMovies] = useState([]);
    const [searchTerm, setSearchTerm] = useState([]);
-   const [totalResults, setTotalResults] = useState(0);
+   const [totalResults, setTotalResults] = useState();
    const [currentPage, setCurrentPage] = useState();
    
 
