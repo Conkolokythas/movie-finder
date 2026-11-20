@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from './components/Card';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,13 +22,15 @@ function App() {
     const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
         setMovies(response.data.Search);
-        setTotalResults(response.data.totalResults);
+        useEffect(() => { setTotalResults(response.data.totalResults) }, [])
         console.log(totalResults);
         let pages = totalResults/10;
         for (let i = 0; i <= pages; i++) {
             items.push(i);
         }
         setCurrentPage(items[0]);
+        console.log("Current page:" + currentPage);
+
    }
 
    const pagination = async (page) => {
@@ -66,7 +68,8 @@ function App() {
 
                   ? (<div className="results">
                       {movies.map((movie) => ( <Card movie={movie} />))}
-                  </div>) : (
+                    </div>
+                    ) : (
                       <div className="empty">
                           <span>No movies were found.</span>
                       </div>)
@@ -76,7 +79,6 @@ function App() {
                   {
                     totalResults.length > 10 
                     ?( 
-                    
                     <div>                     
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
                     <span>{items[0]}</span>
