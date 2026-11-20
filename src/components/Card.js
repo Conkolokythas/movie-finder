@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import imdbLogo from './imdb.svg';
+import noImage from './no-img.png';
 import axios from 'axios';
 
 
@@ -21,7 +22,12 @@ const Card = ({ movie }) => {
             <div className="res-tab" onClick={() => { setShow(true); takeMovieInfo(movie.Title) }}>
                 <div className="my-card">
                     <span class="m-type">{movie.Type}</span>
-              <img src={movie.Poster} alt="movie poster"/>
+                    {
+                        movie.Poster 
+                        ?(<img src={movie.Poster} alt="movie poster"/>) 
+                        : (<img src={noImage} alt="no Poster"/>)
+                    }
+                    
               
               <p><span>{movie.Title}</span></p>
               <p><span>{movie.Year}</span></p>
