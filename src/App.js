@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import Card from './components/Card';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,11 +18,6 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState();
 
-
-   /*useEffect(() => {
-        console.log(searchTerm);
-    }, [searchTerm]);
-   */
 
     const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
