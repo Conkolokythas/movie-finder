@@ -23,7 +23,7 @@ const Card = ({ movie }) => {
                 <div className="my-card">
                     <span class="m-type">{movie.Type}</span>
                     {
-                        movie.Poster == "N/A"
+                        movie.Poster === "N/A"
                         ? (<img src={noImage} alt="no Poster"/>) 
                         : (<img src={movie.Poster} alt="movie poster"/>)
                     }
