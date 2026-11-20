@@ -19,12 +19,10 @@ function App() {
    const [currentPage, setCurrentPage] = useState();
 
 
-   useEffect(() => {
-    //Runs on the first render
+   /*useEffect(() => {
         console.log(searchTerm);
-    //And any time any dependency value changes
     }, [searchTerm]);
-   
+   */
 
     const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
@@ -44,7 +42,8 @@ function App() {
         response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
-        console.log(totalResults);
+        setCurrentPage(page);
+        console.log("Current page:" + page);
    }
 
 
