@@ -37,7 +37,7 @@ function App() {
         response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
         setMovies(response.data.Search);
         setCurrentPage(page);
-        console.log("Current page:" + page);
+        console.log("Pagination Current page:" + page);
    }
 
 
@@ -82,7 +82,7 @@ function App() {
                     <div>                     
                     <span>Total titles found{ totalResults }</span>
                     <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
-                    <input type="number" placeholder="..." value={currentPage} />
+                    <input type="number" placeholder="..." value={currentPage} onChange={(e) => { setCurrentPage(e.target.value) }}/>
                     <button onClick={pagination(currentPage)}>Go</button>
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
                     <span>{items.length }</span>
