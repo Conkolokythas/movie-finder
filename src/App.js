@@ -87,10 +87,11 @@ function App() {
                     totalResults > 10 
                     ?( 
                     <div>                     
-                    <button onClick={() => pagination(currentPage + 1)}>Next page</button>
+                    
                     <span>{items[0]}</span>
-                    <input type="number" placeholder="..." onChange={(e) => { pagination(e.target.value) }}/>
                     <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
+                    <input type="number" placeholder="..." onChange={(e) => { pagination(e.target.value) }}/>
+                    <button onClick={() => pagination(currentPage + 1)}>Next page</button>
                     <span>{items.length + 1}</span>
                     </div>
                     ) : (<span>{items.length}</span>)
