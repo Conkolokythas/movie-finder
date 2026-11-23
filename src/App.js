@@ -69,7 +69,7 @@ function App() {
 
    <Row>
     <Col>
-     <div className="res-tab">
+     <div className="res-col">
       {
         movies?.length > 0
         ? (
