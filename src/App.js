@@ -1,6 +1,6 @@
 import { useState} from 'react';
 import Card from './components/Card';
-import Card from './components/ResultsHeader';
+import ResultsHeader from './components/ResultsHeader';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
