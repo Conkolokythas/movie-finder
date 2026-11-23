@@ -21,13 +21,15 @@ const Card = ({ movie }) => {
 
    switch (movie.Type) {
      case 'movie':
-        bgColor = '#d8af18'
+        bgColor = '#d8af18';
         break;
      case 'series':
-        bgColor = '#1852d8'
+        bgColor = '#1852d8';
         break;
-    case 'game':
-        bgColor = '#8a2be2'
+     case 'game':
+        bgColor = '#8a2be2';
+     default:
+        bgColor = '#1b1b1b';    
    }
 
     return (
