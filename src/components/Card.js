@@ -28,6 +28,7 @@ const Card = ({ movie }) => {
         break;
      case 'game':
         bgColor = '#8a2be2';
+        break;
      default:
         bgColor = '#1b1b1b';    
    }
