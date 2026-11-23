@@ -82,7 +82,7 @@ function App() {
                     <div>                     
                     <span>Total titles found{ totalResults }</span>
                     <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
-                    <input type="number" placeholder="..." value={currentPage} onChange={(e) => { setCurrentPage(e.target.value) }}/>
+                    <input type="number" placeholder="..." />
                     <button onClick={pagination(currentPage)}>Go</button>
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
                     <span>{items.length }</span>
