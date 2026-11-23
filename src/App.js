@@ -64,7 +64,7 @@ function App() {
    </Row>
 
           {
-              movies?.length > 0
+              totalResults?.length > 0
 
                   ? (<div className="results">
                       {movies.map((movie) => ( <Card movie={movie} />))}
