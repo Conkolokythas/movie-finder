@@ -37,7 +37,7 @@ const Card = ({ movie }) => {
         <>
             <div className="res-tab" onClick={() => { setShow(true); takeMovieInfo(movie.Title) }}>
                 <div className="my-card">
-                    <span class="m-type" style={'background-color:' + bgColor}>{movie.Type}</span>
+                    <span class="m-type" style={{backgroundColor : bgColor}}>{movie.Type}</span>
                     {
                         movie.Poster === "N/A"
                         ? (<img src={noImage} alt="no Poster"/>) 
