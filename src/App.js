@@ -9,7 +9,6 @@ import './App.css';
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
 let response = null;
-let items = [];
 
 function App() {
 
@@ -24,10 +23,6 @@ function App() {
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
         console.log(totalResults);
-        let pages = totalResults/10;
-        for (let i = 0; i <= pages; i++) {
-            items.push(i);
-        }
         setCurrentPage(1);
    }
 
@@ -82,7 +77,7 @@ function App() {
                     <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
                     <input type="number" placeholder="..." min="1" max={totalResults/10} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
-                    <span>{items.length }</span>
+                    <span>{ totalResults/10 }</span>
                     </div>
                     ) : (<span></span>)
                   }
