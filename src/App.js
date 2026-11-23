@@ -29,8 +29,6 @@ function App() {
             items.push(i);
         }
         setCurrentPage(1);
-        console.log("Current page:" + currentPage);
-
    }
 
     const pagination = async (page) => {
@@ -82,7 +80,7 @@ function App() {
                     <div>                     
                     <span>Total titles found{ totalResults }</span>
                     <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
-                    <input type="number" placeholder="..." value={currentPage} onChange={(e) => { pagination(e.target.value) }}/>
+                    <input type="text" placeholder="..." min="1" max={totalResults/10} value={currentPage} onChange={(e) => { pagination(e.target.value) }}/>
                     <button onClick={() => pagination(currentPage + 1)}>Next page</button>
                     <span>{items.length }</span>
                     </div>
