@@ -12,16 +12,30 @@ const Card = ({ movie }) => {
 
     const api_url = 'https://m-finder-s.netlify.app';
 
+    let bgColor = '';
+
     const takeMovieInfo = async (title) => {
         const response = await axios.get(api_url + '?t=' + title);
         setMovieInfo(response.data);
+   }
+
+   switch (movie.Type) {
+     case 'movie':
+        bgColor = '#d8af18'
+        break;
+     case 'series':
+        bgColor = '#1852d8'
+        break;
+    case 'game':
+        bgColor = '#8a2be2'
+        break;      
    }
 
     return (
         <>
             <div className="res-tab" onClick={() => { setShow(true); takeMovieInfo(movie.Title) }}>
                 <div className="my-card">
-                    <span class="m-type">{movie.Type}</span>
+                    <span class="m-type" style={'background-color:' + bgColor}>{movie.Type}</span>
                     {
                         movie.Poster === "N/A"
                         ? (<img src={noImage} alt="no Poster"/>) 
