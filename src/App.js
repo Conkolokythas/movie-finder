@@ -69,6 +69,7 @@ function App() {
 
    <Row>
     <Col>
+     <div className="res-tab">
       {
         movies?.length > 0
         ? (
@@ -80,7 +81,7 @@ function App() {
             </div>)
       }
 
-                 
+     </div>             
     </Col>
    </Row>
    <Row>
