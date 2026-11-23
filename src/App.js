@@ -60,7 +60,7 @@ function App() {
    <Row>
       <Col>
         {
-          movies ? (
+          movies?.length ? (
             <ResultsHeader resultsNum={totalResults} term={searchTerm} />
           ) : (<div></div>)
         }

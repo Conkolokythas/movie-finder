@@ -5,7 +5,7 @@ const ResultsHeader = ({ resultsNum, term }) => {
 
     return (
         <>
-        <Navbar className="bg-body-tertiary">
+        <Navbar data-bs-theme="dark" className="bg-body-tertiary">
             <Container>
                 <Navbar.Brand>{resultsNum} results for <b>{term}</b></Navbar.Brand>
                 <Navbar.Toggle />
