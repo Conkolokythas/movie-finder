@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import Card from './components/Card';
+import Card from './components/ResultsHeader';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
@@ -35,19 +36,19 @@ function App() {
 
 
   return (
-   <div className="App">
+  <div className="App">
 
-   <Row>
-    <Col>
-    <div className="header">
-      <div className="header-body">
-       <div className="search-field">
+  <Row>
+  <Col>
+  <div className="header">
+    <div className="header-body">
+      <div className="search-field">
         <input
           type="text"
           placeholder="Search Movies"
           value={searchTerm}
           onChange={(e) => { setSearchTerm(e.target.value) }}/>
-        </div>
+      </div>
         <div className="submit">
           <button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>
         </div>
@@ -56,34 +57,52 @@ function App() {
     </Col>
    </Row>
 
-          {
-              movies?.length > 0
+   <Row>
+      <Col>
+        {
+          movies ? (
+            <ResultsHeader resultsNum={totalResults} term={searchTerm} />
+          ) : (<div></div>)
+        }
+      </Col>
+    </Row>
 
-                  ? (<div className="results">
-                      {movies.map((movie) => ( <Card movie={movie} />))}
-                    </div>
-                    ) : (
-                      <div className="empty">
-                          <span>No movies were found.</span>
-                      </div>)
-                      
-                      }
+   <Row>
+    <Col>
+      {
+        movies?.length > 0
+        ? (
+          <div className="results">
+              {movies.map((movie) => ( <Card movie={movie} />))}
+          </div>) : (
+            <div className="empty">
+                <span>No movies were found.</span>
+            </div>)
+      }
 
-                  {
-                    totalResults > 10 
-                    ?( 
-                    <div>                     
-                    <span>Total titles found{ totalResults }</span>
-                    <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
-                    <input type="number" placeholder="..." min="1" max={totalResults/10} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
-                    <button onClick={() => pagination(currentPage + 1)}>Next page</button>
-                    <span>{ totalResults/10 }</span>
-                    </div>
-                    ) : (<span></span>)
-                  }
+                 
+    </Col>
+   </Row>
+   <Row>
+    <Col>
+        {
+            totalResults > 10 
+            ?( 
+              <div>                     
+                <span>Total titles found{ totalResults }</span>
+                <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
+                <input type="number" placeholder="..." min="1" max={totalResults/10} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
+                <button onClick={() => pagination(currentPage + 1)}>Next page</button>
+                <span>{ totalResults/10 }</span>
+              </div>
+              ) : (<span></span>)
+          }
+    </Col>
+  </Row>
+
+
         
-    </div>
-    );
+  </div> );
 }//App
 
 
