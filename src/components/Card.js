@@ -28,7 +28,6 @@ const Card = ({ movie }) => {
         break;
     case 'game':
         bgColor = '#8a2be2'
-        break;      
    }
 
     return (
