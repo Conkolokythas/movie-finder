@@ -7,7 +7,12 @@ const ResultsHeader = ({ resultsNum, term }) => {
         <>
         <Navbar data-bs-theme="dark" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand>{resultsNum} results for <b>{term}</b></Navbar.Brand>
+                {
+                resultsNum === 0 ?
+                (<Navbar.Brand>No results found for <b>{term}</b></Navbar.Brand>) : 
+                (<Navbar.Brand>{resultsNum} results for <b>{term}</b></Navbar.Brand>)
+                }
+                
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>

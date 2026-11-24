@@ -25,9 +25,6 @@ function App() {
         setTotalResults(response.data.totalResults);
         console.log(totalResults);
         setCurrentPage(1);
-        if(totalResults === 0) {
-          return <div class="empty"><span>No movies were found.</span></div>
-        }
    }
 
     const pagination = async (page) => {
@@ -65,14 +62,13 @@ function App() {
         {
           totalResults ? (
             <ResultsHeader resultsNum={totalResults} term={searchTerm} />
-              
 
           ) : (' ')
         }
 
         {
           movies?.length ? (
-            <div className="results">
+            <div className="results res-col">
               {movies.map((movie) => ( <Card movie={movie} />))}
             </div>
           ) : (' ')
