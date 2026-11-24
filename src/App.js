@@ -17,6 +17,7 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState();
+   const [request, setRequest] = useState(false);
 
 
    const searchMovies = async (search) => {
@@ -24,6 +25,7 @@ function App() {
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
         console.log(totalResults);
+        setRequest(true);
         setCurrentPage(1);
    }
 
@@ -59,7 +61,10 @@ function App() {
 
    <Row>
       <Col>
-            <ResultsHeader resultsNum={totalResults} term={searchTerm} />
+        {
+          request ? (<ResultsHeader resultsNum={totalResults} term={searchTerm} />) : (' ')
+        }
+            
         {
           movies?.length ? (
             <div className="results res-col">
