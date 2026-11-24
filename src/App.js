@@ -92,7 +92,7 @@ function App() {
                 <button onClick={() => pagination(totalResults/10)}>{'>>'}</button>
                 <span>{ totalResults/10 }</span>
               </div>
-              ) : (<span>Total titles found{ totalResults }</span>)
+              ) : (' ')
           }
     </Col>
   </Row>
