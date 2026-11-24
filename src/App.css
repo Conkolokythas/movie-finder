@@ -14,9 +14,9 @@ body {
   font-family: "Zen Dots", sans-serif;
   font-weight: 400;
   font-style: normal;
-  margin-top: 1.5rem;
+  padding: 1em 0 1em 0;
   background-color: #000000;
-  border-bottom: 1px solid #fefefe;
+  border-bottom: 1px solid #454545;
 }
 
 .flex {
