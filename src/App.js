@@ -61,13 +61,20 @@ function App() {
       <Col>
         {
           totalResults ? (
-            <div className="results">
             <ResultsHeader resultsNum={totalResults} term={searchTerm} />
-              {movies.map((movie) => ( <Card movie={movie} />))}
-          </div>
+              
              
           ) : (<div className="empty"><span>No movies were found.</span></div>)
         }
+
+        {
+          movies?.length ? (
+            <div className="results">
+              {movies.map((movie) => ( <Card movie={movie} />))}
+            </div>
+          ) : (' ')
+        }
+        
       </Col>
     </Row>
 
