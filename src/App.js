@@ -19,7 +19,7 @@ function App() {
    const [currentPage, setCurrentPage] = useState();
 
 
-    const searchMovies = async (search) => {
+   const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
@@ -60,30 +60,17 @@ function App() {
    <Row>
       <Col>
         {
-          movies?.length ? (
+          totalResults ? (
+            <div className="results">
             <ResultsHeader resultsNum={totalResults} term={searchTerm} />
-          ) : (<div></div>)
+              {movies.map((movie) => ( <Card movie={movie} />))}
+          </div>
+             
+          ) : (<div className="empty"><span>No movies were found.</span></div>)
         }
       </Col>
     </Row>
 
-   <Row>
-    <Col>
-     <div className="res-col">
-      {
-        movies?.length > 0
-        ? (
-          <div className="results">
-              {movies.map((movie) => ( <Card movie={movie} />))}
-          </div>) : (
-            <div className="empty">
-                <span>No movies were found.</span>
-            </div>)
-      }
-
-     </div>             
-    </Col>
-   </Row>
    <Row>
     <Col>
         {
@@ -91,12 +78,14 @@ function App() {
             ?( 
               <div>                     
                 <span>Total titles found{ totalResults }</span>
-                <button onClick={() => pagination(currentPage - 1)}>Previous page</button>
+                <button onClick={() => pagination(1)}>{'<<'}</button>
+                <button onClick={() => pagination(currentPage - 1)}>{'<'}</button>
                 <input type="number" placeholder="..." min="1" max={totalResults/10} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
-                <button onClick={() => pagination(currentPage + 1)}>Next page</button>
+                <button onClick={() => pagination(currentPage + 1)}>{'>'}</button>
+                <button onClick={() => pagination(totalResults/10)}>{'>>'}</button>
                 <span>{ totalResults/10 }</span>
               </div>
-              ) : (<span></span>)
+              ) : (<span>Total titles found{ totalResults }</span>)
           }
     </Col>
   </Row>
