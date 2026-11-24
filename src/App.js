@@ -59,13 +59,7 @@ function App() {
 
    <Row>
       <Col>
-        {
-          totalResults ? (
             <ResultsHeader resultsNum={totalResults} term={searchTerm} />
-
-          ) : (' ')
-        }
-
         {
           movies?.length ? (
             <div className="results res-col">
