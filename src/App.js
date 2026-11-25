@@ -10,6 +10,7 @@ import './App.css';
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
 let response = null;
+let lastPge = (x) => {Math.ceil(x)} 
 
 function App() {
 
@@ -17,23 +18,26 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState();
-   const [request, setRequest] = useState(false);
-
 
    const searchMovies = async (search) => {
         response = await axios.get(api_url + '?s=' + search);
         setMovies(response.data.Search);
         setTotalResults(response.data.totalResults);
-        console.log(totalResults);
-        setRequest(true);
+        lastPge(totalResults);
+        console.log("total rsults" + totalResults);
         setCurrentPage(1);
    }
 
     const pagination = async (page) => {
-        response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
-        setMovies(response.data.Search);
-        setCurrentPage(page);
-        console.log("Pagination Current page:" + page);
+        if (page > totalResults || page > 0) {
+          setCurrentPage(currentPage);
+        } else {
+          response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
+          setMovies(response.data.Search);
+          setCurrentPage(page);
+          console.log("Pagination Current page:" + page);
+        }
+        
    }
 
    function handleSubmit(e) {
@@ -54,22 +58,15 @@ function App() {
   <Col>
   <div className="header">
     <div className="header-body">
-      <div className="search-field">
-        {/*<input
-          type="text"
-          placeholder="Search Movies"
-          value={searchTerm}
-          onChange={(e) => { setSearchTerm(e.target.value) }}/>*/}
-        <form onSubmit={handleSubmit}>
-        <input type="text" name="query"/>
-        <button type="submit">Search</button>
-      </form>
-      </div>
-       
-
+      <form onSubmit={handleSubmit}>
+        <div className="search-field">
+          <input type="text" name="query" autocomplete="off"/>
+        </div>
         <div className="submit">
           {/*<button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>*/}
+            <button type="submit">Search</button>
         </div>
+        </form>
        </div>
       </div>
     </Col>
@@ -78,16 +75,17 @@ function App() {
 
    <Row>
       <Col>
-        {
-          request ? (<ResultsHeader resultsNum={totalResults} term={searchTerm} />) : (' ')
-        }
-            
+
         {
           movies?.length ? (
-            <div className="results res-col">
-              {movies.map((movie) => ( <Card movie={movie} />))}
+            <div>
+              <ResultsHeader resultsNum={totalResults} term={searchTerm} />
+              <div className="results res-col">
+                {movies.map((movie) => ( <Card movie={movie} />))}
+              </div>
             </div>
-          ) : (' ')
+            
+          ) : (<ResultsHeader resultsNum={totalResults} term={searchTerm} />)
         }
         
       </Col>
@@ -102,10 +100,10 @@ function App() {
                 <span>Total titles found{ totalResults }</span>
                 <button onClick={() => pagination(1)}>{'<<'}</button>
                 <button onClick={() => pagination(currentPage - 1)}>{'<'}</button>
-                <input type="number" placeholder="..." min="1" max={totalResults/10} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
+                <input type="number" placeholder="..." min="1" max={lastPge} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
                 <button onClick={() => pagination(currentPage + 1)}>{'>'}</button>
-                <button onClick={() => pagination(totalResults/10)}>{'>>'}</button>
-                <span>{ totalResults/10 }</span>
+                <button onClick={() => pagination(lastPge)}>{'>>'}</button>
+                <span>{ lastPge }</span>
               </div>
               ) : (' ')
           }
