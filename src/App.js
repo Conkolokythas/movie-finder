@@ -23,13 +23,6 @@ function App() {
       return response;
    }
 
-   const searchByType = async (term, type) => {
-    response = await axios.get(api_url + '?s=' + term + '&type=' + type);
-    setMovies(response.data.Search);
-    setTotalResults(response.data.totalResults);
-    setCurrentPage(1);
-   }
-
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
       setMovies(response.data.Search);

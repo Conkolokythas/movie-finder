@@ -1,8 +1,16 @@
-import searchByType from '../App'
+import {setMovies, setTotalResults, setCurrentPage} from '../App'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
 const ResultsHeader = ({ resultsNum, term }) => {
+
+    const searchByType = async (term, type) => {
+    response = await axios.get(api_url + '?s=' + term + '&type=' + type);
+    setMovies(response.data.Search);
+    setTotalResults(response.data.totalResults);
+    setCurrentPage(1);
+   }
+
     return (
         <>
         <Navbar data-bs-theme="dark" className="bg-body-tertiary">
