@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
-const ResultsHeader = ({ resultsNum, term, searchByType}) => {
+const ResultsHeader = ({ resultsNum, term }) => {
 
 
     return (
@@ -17,13 +17,13 @@ const ResultsHeader = ({ resultsNum, term, searchByType}) => {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                    <span onClick={searchByType(term, 'movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
+                    <span>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
                 </Navbar.Text>
                 <Navbar.Text>
-                    <span onClick={searchByType(term, 'series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
+                    <span>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
                 </Navbar.Text>
                 <Navbar.Text>
-                    <span onClick={searchByType(term, 'game')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
+                    <span>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
                 </Navbar.Text>
                 </Navbar.Collapse>
             </Container>

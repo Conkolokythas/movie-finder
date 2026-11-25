@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import Card from './components/Card';
 import ResultsHeader from './components/ResultsHeader';
 import axios from 'axios'
@@ -23,12 +23,12 @@ function App() {
       return response;
    }
 
-   const searchByType = async (term, type) => {
+   /*const searchByType = async (term, type) => {
     response = await axios.get(api_url + '?s=' + term + '&type=' + type);
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
     setCurrentPage(1);
-   }
+   }*/
 
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
@@ -83,7 +83,7 @@ function App() {
         {
           movies.length ? (
             <div>
-              <ResultsHeader resultsNum={totalResults} term={searchTerm} searchByType={searchByType}/>
+              <ResultsHeader resultsNum={totalResults} term={searchTerm}>hey</ResultsHeader>
               <div className="results res-col">
                 {movies.map((movie) => ( <Card movie={movie} />))}
               </div>
@@ -110,7 +110,7 @@ function App() {
               </div>
             </div>
             
-          ) : (<ResultsHeader resultsNum={totalResults} term={searchTerm} />)
+          ) : (<ResultsHeader resultsNum={totalResults} term={searchTerm}/>)
           
         }
         
