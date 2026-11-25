@@ -36,6 +36,15 @@ function App() {
         console.log("Pagination Current page:" + page);
    }
 
+   function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      //const query = formData.get('term');
+      setSearchTerm(formData.get('term'));
+      searchMovies(searchTerm);
+  }
+
 
   return (
   <div className="App">
@@ -45,19 +54,26 @@ function App() {
   <div className="header">
     <div className="header-body">
       <div className="search-field">
-        <input
+        {/*<input
           type="text"
           placeholder="Search Movies"
           value={searchTerm}
-          onChange={(e) => { setSearchTerm(e.target.value) }}/>
+          onChange={(e) => { setSearchTerm(e.target.value) }}/>*/}
+        <form onSubmit={handleSubmit}>
+        <input type="text" name={term}/>
+        <button type="submit">Search</button>
+      </form>
       </div>
+       
+
         <div className="submit">
-          <button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>
+          {/*<button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>*/}
         </div>
        </div>
       </div>
     </Col>
    </Row>
+
 
    <Row>
       <Col>
@@ -99,7 +115,5 @@ function App() {
         
   </div> );
 }//App
-
-
 
 export default App;
