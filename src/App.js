@@ -40,8 +40,7 @@ function App() {
       e.preventDefault();
       const form = e.target;
       const formData = new FormData(form);
-      console.log("formData:" + formData);
-      const query = formData.get('term');
+      const query = formData.get('query');
       setSearchTerm(query);
       searchMovies(query);
       console.log("handleSubmit:" + query);
