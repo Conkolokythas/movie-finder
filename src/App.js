@@ -25,14 +25,13 @@ function App() {
       setTotalResults(response.data.totalResults);
       lastPge = Math.ceil(totalResults);
       console.log("total rsults" + totalResults);
-      console.log(response);
       setCurrentPage(1);
    }
 
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
       setMovies(response.data.Search);
-      setCurrentPage(page);
+      setCurrentPage(parseInt(page, 10));
       console.log("Pagination Current page:" + page);
    }
 
@@ -96,14 +95,14 @@ function App() {
                 <span>Total titles found{ totalResults }</span>
                 <button onClick={() => pagination(1)}>{'<<'}</button>
                 {
-                  currentPage === 0 ?
+                  currentPage == 1 ?
                   (<button disabled>{'>'}</button>) 
                   : 
                   (<button onClick={() => pagination(currentPage - 1)}>{'<'}</button>)
                 }
                 <input type="number" placeholder="..." min="1" max={lastPge} value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
                 {
-                  currentPage === lastPge ?
+                  currentPage == lastPge ?
                   (<button disabled>{'>'}</button>) 
                   : 
                   (<button onClick={() => pagination(currentPage + 1)}>{'>'}</button>)
