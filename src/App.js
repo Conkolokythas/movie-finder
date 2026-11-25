@@ -23,6 +23,11 @@ function App() {
       return response;
    }
 
+   /*const searchByType = async (term, type) => {
+    response = await axios.get(api_url + '?s=' + term + '&type=' type);
+    return response;
+   }*/
+
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
       setMovies(response.data.Search);
@@ -42,6 +47,7 @@ function App() {
           setTotalResults(response.data.totalResults);
           console.log("total rsults" + totalResults);
           setCurrentPage(1);
+          console.log(response)
         });
        
       console.log("handleSubmit:" + query);
@@ -72,7 +78,6 @@ function App() {
 
    <Row>
       <Col>
-
         {
           movies.length ? (
             <div>
@@ -80,7 +85,8 @@ function App() {
               <div className="results res-col">
                 {movies.map((movie) => ( <Card movie={movie} />))}
               </div>
-              <div>                     
+              <div className='pag-tab'>  
+                <div className='pagination'>                  
                 <span>Total titles found{ totalResults }</span>
                 <button onClick={() => pagination(1)}>{'<<'}</button>
                 {
@@ -98,6 +104,7 @@ function App() {
                 }
                 <button onClick={() => pagination(Math.ceil(totalResults/10))}>{'>>'}</button>
                 <span>{ Math.ceil(totalResults/10) }</span>
+                </div> 
               </div>
             </div>
             
