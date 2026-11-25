@@ -41,7 +41,7 @@ function App() {
       const form = e.target;
       const formData = new FormData(form);
       //const query = formData.get('term');
-      setSearchTerm(formData.get('term'));
+      setSearchTerm(formData.get('query'));
       searchMovies(searchTerm);
   }
 
@@ -60,7 +60,7 @@ function App() {
           value={searchTerm}
           onChange={(e) => { setSearchTerm(e.target.value) }}/>*/}
         <form onSubmit={handleSubmit}>
-        <input type="text" name={term}/>
+        <input type="text" name={query}/>
         <button type="submit">Search</button>
       </form>
       </div>
