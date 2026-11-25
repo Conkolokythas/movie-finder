@@ -45,9 +45,9 @@ function App() {
       searchMovies(query).then(
         (response) => {
           setMovies(response.data.Search);
-          lastPge = Math.ceil(totalResults/10);
           console.log("total rsults" + totalResults);
           setTotalResults(response.data.totalResults);
+          lastPge = Math.ceil(totalResults/10);
           setCurrentPage(1);
         });
       console.log("handleSubmit:" + query);
