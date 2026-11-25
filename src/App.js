@@ -21,11 +21,12 @@ function App() {
 
    const searchMovies = async (search) => {
       response = await axios.get(api_url + '?s=' + search);
-      setMovies(response.data.Search);
-      lastPge = Math.ceil(totalResults);
+      return response;
+      /*setMovies(response.data.Search);
+      lastPge = Math.ceil(totalResults/10);
       console.log("total rsults" + totalResults);
       setTotalResults(response.data.totalResults);
-      setCurrentPage(1);
+      setCurrentPage(1);*/
    }
 
     const pagination = async (page) => {
@@ -41,7 +42,14 @@ function App() {
       const formData = new FormData(form);
       const query = formData.get('query');
       setSearchTerm(query);
-      searchMovies(query);
+      searchMovies(query).then(
+        (response) => {
+          setMovies(response.data.Search);
+          lastPge = Math.ceil(totalResults/10);
+          console.log("total rsults" + totalResults);
+          setTotalResults(response.data.totalResults);
+          setCurrentPage(1);
+        });
       console.log("handleSubmit:" + query);
   }
 
