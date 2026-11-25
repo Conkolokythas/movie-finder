@@ -1,4 +1,4 @@
-import searchByType from src/App.js
+import searchByType from './src/App.js'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 

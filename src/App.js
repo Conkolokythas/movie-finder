@@ -25,7 +25,9 @@ function App() {
 
    const searchByType = async (term, type) => {
     response = await axios.get(api_url + '?s=' + term + '&type=' + type);
-    return response;
+    setMovies(response.data.Search);
+    setTotalResults(response.data.totalResults);
+    setCurrentPage(1);
    }
 
     const pagination = async (page) => {
