@@ -23,10 +23,10 @@ function App() {
       return response;
    }
 
-   /*const searchByType = async (term, type) => {
-    response = await axios.get(api_url + '?s=' + term + '&type=' type);
+   const searchByType = async (term, type) => {
+    response = await axios.get(api_url + '?s=' + term + '&type=' + type);
     return response;
-   }*/
+   }
 
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);

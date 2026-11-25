@@ -1,3 +1,4 @@
+import searchByType from src/App.js
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -8,20 +9,20 @@ const ResultsHeader = ({ resultsNum, term }) => {
             <Container>
                 {
                 resultsNum === 0 ?
-                (<Navbar.Brand>No results found for <b>{term}</b></Navbar.Brand>) : 
+                (<Navbar.Brand>No results found for: <b>{term}</b></Navbar.Brand>) : 
                 (<Navbar.Brand>{resultsNum} results for <b>{term}</b></Navbar.Brand>)
                 }
                 
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                    Movies <span></span>
+                    <span onClick={searchByType(term, 'movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
                 </Navbar.Text>
                 <Navbar.Text>
-                    Series <span></span>
+                    <span onClick={searchByType(term, 'series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
                 </Navbar.Text>
                 <Navbar.Text>
-                    Games <span></span>
+                    <span onClick={searchByType(term, 'game')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
                 </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
