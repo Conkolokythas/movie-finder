@@ -17,7 +17,7 @@ function App() {
    const [movies, setMovies] = useState([]);
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState(0);
-   const [currentPage, setCurrentPage] = useState();
+   const [currentPage, setCurrentPage] = useState(0);
 
    const searchMovies = async (search) => {
       response = await axios.get(api_url + '?s=' + search);
