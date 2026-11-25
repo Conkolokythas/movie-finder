@@ -47,9 +47,9 @@ function App() {
           setMovies(response.data.Search);
           console.log("total rsults" + totalResults);
           setTotalResults(response.data.totalResults);
-          lastPge = Math.ceil(totalResults/10);
           setCurrentPage(1);
         });
+      lastPge = Math.ceil(totalResults/10);  
       console.log("handleSubmit:" + query);
   }
 
