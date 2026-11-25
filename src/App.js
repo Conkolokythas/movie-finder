@@ -22,9 +22,9 @@ function App() {
    const searchMovies = async (search) => {
       response = await axios.get(api_url + '?s=' + search);
       setMovies(response.data.Search);
-      setTotalResults(response.data.totalResults);
       lastPge = Math.ceil(totalResults);
       console.log("total rsults" + totalResults);
+      setTotalResults(response.data.totalResults);
       setCurrentPage(1);
    }
 
@@ -78,25 +78,12 @@ function App() {
               <div className="results res-col">
                 {movies.map((movie) => ( <Card movie={movie} />))}
               </div>
-            </div>
-            
-          ) : (<ResultsHeader resultsNum={totalResults} term={searchTerm} />)
-        }
-        
-      </Col>
-    </Row>
-
-   <Row>
-    <Col>
-        {
-            totalResults > 10 
-            ?( 
               <div>                     
                 <span>Total titles found{ totalResults }</span>
                 <button onClick={() => pagination(1)}>{'<<'}</button>
                 {
                   currentPage === 1 ?
-                  (<button disabled>{'>'}</button>) 
+                  (<button disabled>{'<'}</button>) 
                   : 
                   (<button onClick={() => pagination(currentPage - 1)}>{'<'}</button>)
                 }
@@ -110,12 +97,14 @@ function App() {
                 <button onClick={() => pagination(lastPge)}>{'>>'}</button>
                 <span>{ lastPge }</span>
               </div>
-              ) : (' ')
-          }
-    </Col>
-  </Row>
-
-
+            </div>
+            
+          ) : (<ResultsHeader resultsNum={totalResults} term={searchTerm} />)
+          
+        }
+        
+      </Col>
+    </Row>
         
   </div> );
 }//App
