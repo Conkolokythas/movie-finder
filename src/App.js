@@ -37,6 +37,7 @@ function App() {
    }
 
    function handleSubmit(e) {
+    console.log("Lastpage before:" + lastPge);
       e.preventDefault();
       const form = e.target;
       const formData = new FormData(form);
@@ -45,11 +46,13 @@ function App() {
       searchMovies(query).then(
         (response) => {
           setMovies(response.data.Search);
-          console.log("total rsults" + totalResults);
           setTotalResults(response.data.totalResults);
+          console.log("total rsults" + totalResults);
+          lastPge = Math.ceil(totalResults/10);
+          console.log("Lastpage after:" + lastPge); 
           setCurrentPage(1);
         });
-      lastPge = Math.ceil(totalResults/10);  
+       
       console.log("handleSubmit:" + query);
   }
 
