@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
-const ResultsHeader = ({ resultsNum, term }) => {
+const ResultsHeader = ({ resultsNum, term, searchByType}) => {
 
 
     return (
