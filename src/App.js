@@ -60,7 +60,7 @@ function App() {
           value={searchTerm}
           onChange={(e) => { setSearchTerm(e.target.value) }}/>*/}
         <form onSubmit={handleSubmit}>
-        <input type="text" name={query}/>
+        <input type="text" name="quer"/>
         <button type="submit">Search</button>
       </form>
       </div>
