@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
 const ResultsHeader = ({ resultsNum, term }) => {
-
+console.log("ResultsHeader:" + resultsNum);
     return (
         <>
         <Navbar data-bs-theme="dark" className="bg-body-tertiary">
