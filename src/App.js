@@ -40,9 +40,9 @@ function App() {
       e.preventDefault();
       const form = e.target;
       const formData = new FormData(form);
-      //const query = formData.get('term');
-      setSearchTerm(formData.get('query'));
-      searchMovies(searchTerm);
+      const query = formData.get('term');
+      searchMovies(query);
+      console.log("handleSubmit:" + query);
   }
 
 
@@ -60,7 +60,7 @@ function App() {
           value={searchTerm}
           onChange={(e) => { setSearchTerm(e.target.value) }}/>*/}
         <form onSubmit={handleSubmit}>
-        <input type="text" name="quer"/>
+        <input type="text" name="query"/>
         <button type="submit">Search</button>
       </form>
       </div>
