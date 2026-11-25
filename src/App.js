@@ -80,7 +80,7 @@ function App() {
       <Col>
 
         {
-          movies?.length ? (
+          movies.length ? (
             <div>
               <ResultsHeader resultsNum={totalResults} term={searchTerm} />
               <div className="results res-col">
