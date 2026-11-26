@@ -60,7 +60,7 @@ function App() {
       console.log("handleSubmit:" + query);
   }
 
-
+console.log(reqSend);
   return (
   <div className="App">
 
@@ -86,7 +86,7 @@ function App() {
    <Row>
       <Col>
         {
-           reqSend && movies?.length  ? (
+           movies?.length  ? (
             
             <div>
               <Navbar data-bs-theme="dark" className="bg-body-tertiary">
