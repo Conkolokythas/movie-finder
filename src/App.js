@@ -18,6 +18,7 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
    const [currentType, setCurrentType] = useState('');
+   
 
    const route = { 
     url: api_url, 
@@ -32,25 +33,28 @@ function App() {
     return r;
   }
 
-   const searchMovies = async (search) => {
-      route.query = search;
+   const searchMovies = async (term) => {
+      route.query = term;
       route.page = 1;
       response = await axios.get(request(route));
       return response;
    }
 
    const searchByType = async (type) => {
+    route.query = searchTerm;
     route.type = type;
     route.page = 1;
     response = await axios.get(request(route));
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
     setCurrentPage(route.page);
+    setCurrentType(route.type);
     console.log("handleSubmit:" + request(currentPage));
-
    }
 
     const pagination = async (page) => {
+      route.query = searchTerm;
+      route.type = currentType;
       route.page = page;
       response = await axios.get(request(route)); 
       setMovies(response.data.Search);
