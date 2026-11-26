@@ -86,7 +86,7 @@ function App() {
    <Row>
       <Col>
         {
-           reqSend && movies.length  ? (
+           reqSend && movies?.length  ? (
             
             <div>
               <Navbar data-bs-theme="dark" className="bg-body-tertiary">
