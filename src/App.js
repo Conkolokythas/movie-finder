@@ -8,7 +8,7 @@ import './App.css';
 
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
-//const typeRoute = "/type" ;
+const typeRoute = "/type" ;
 let response = null;
 
 function App() {
@@ -17,24 +17,27 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
+   const [reqSend, setReqSend] = useState(false);
 
    const searchMovies = async (search) => {
       response = await axios.get(api_url + '?s=' + search);
+      setReqSend(true);
       return response;
    }
 
-   /*const searchByType = async (term, type) => {
+   const searchByType = async (term, type) => {
     response = await axios.get(api_url + typeRoute + '?s=' + term + '&type=' + type);
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
-    setCurrentPage(1);*/
+    setReqSend(true);
+    setCurrentPage(1);
    }
 
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
       setMovies(response.data.Search);
       setCurrentPage(page);
-      console.log("Pagination Current page:" + page);
+      setReqSend(true);
    }
 
    function handleSubmit(e) {
@@ -81,8 +84,27 @@ function App() {
    <Row>
       <Col>
         {
-          movies.length ? (
+           reqSend && movies.length  ? (
+            
             <div>
+              <Navbar data-bs-theme="dark" className="bg-body-tertiary">
+                <Container>
+                  <Navbar.Brand>{totalResults} results for <b>{searchTerm}</b></Navbar.Brand>
+                  <Navbar.Toggle />
+                  <Navbar.Collapse className="justify-content-end">
+                  <Navbar.Text>
+                    <span onClick={searchByType(searchTerm, 'movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
+                  </Navbar.Text>
+                  <Navbar.Text>
+                    <span onClick={searchByType(searchTerm, 'series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
+                  </Navbar.Text>
+                  <Navbar.Text>
+                    <span onClick={searchByType(searchTerm, 'games')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
+                  </Navbar.Text>
+                  </Navbar.Collapse>
+                </Container>
+              </Navbar>
+
               <div className="results res-col">
                 {movies.map((movie) => ( <Card movie={movie} />))}
               </div>
@@ -109,7 +131,18 @@ function App() {
               </div>
             </div>
             
-          ) : ( ' ' )
+          ) : (  
+            <Navbar data-bs-theme="dark" className="bg-body-tertiary">
+              <Container>
+                <Navbar.Brand>No results for: <b>{searchTerm}</b></Navbar.Brand> : 
+                <Navbar.Toggle />
+                <Navbar.Collapse className="justify-content-end">
+                  <Navbar.Text>
+                  </Navbar.Text>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
+             )
           
         }
         
