@@ -18,17 +18,26 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
    const [currentType, setCurrentType] = useState('');
-   const [route, setRoute] = useState({ url: api_url, query: ' ', type:  ' ', page: ' '});
+   const [route, setRoute] = useState({ url: ' ', query: ' ', type:  ' ', page: ' '});
 
   const request = (x) => {
-    let r = x.url + '/' + x.query + '/' + x.type + '/' + x.page;
+    let r = x.url + x.query + x.type + x.page;
     console.log("request:" + r);
     return r;
   }
 
-   const searchMovies = async () => {
+   const searchMovies = async (search) => {
+      setSearchTerm(search);
+      setCurrentPage(1);
+      setCurrentType('');
+      setRoute({
+          url: api_url,
+          query: "?s=" + searchTerm,
+          type: "&type=" + currentType,
+          page: "&page=" + currentPage
+        });
       response = await axios.get(request(route));
-      console.log("handleSubmit:" + request(route));
+      console.log("searchMovies:" + request(route));
       return response;
    }
 
@@ -55,22 +64,14 @@ function App() {
       const form = e.target;
       const formData = new FormData(form);
       const query = formData.get('query');
-      setSearchTerm(query);
-      setCurrentPage(1);
-      setCurrentType('');
-      setRoute({
-          query: "?s=" + searchTerm,
-          type: "&type=" + currentType,
-          page: "&page=" + currentPage
-        });
-      searchMovies().then(
+      searchMovies(query).then(
         (response) => {
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
           console.log("total rsults" + totalResults);
          });
        
-      console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
+      //console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
   }
 
   return (
