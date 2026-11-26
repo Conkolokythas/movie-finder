@@ -17,7 +17,7 @@ function App() {
    const [searchTerm, setSearchTerm] = useState('');
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
-   const [currentType, setCurrentType] = useState('');
+   //const [currentType, setCurrentType] = useState('');
 
    const route = { 
     url: api_url, 
@@ -66,7 +66,7 @@ function App() {
       searchMovies(query).then(
         (response) => {
           setSearchTerm(route.query);
-          setCurrentType(route.type);
+          //setCurrentType(route.type);
           setCurrentPage(route.page);
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
