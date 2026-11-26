@@ -17,40 +17,41 @@ function App() {
    const [searchTerm, setSearchTerm] = useState('');
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
-   //const [currentType, setCurrentType] = useState('');
+   const [currentType, setCurrentType] = useState('');
 
    const route = { 
     url: api_url, 
-    query: ' ', 
-    type:  ' ', 
-    page: ' '
+    query: '', 
+    type:  '', 
+    page: ''
   };
 
   const request = (x) => {
-    let r = x.url + x.query + x.type + x.page;
+    let r = x.url + '?s=' + x.query + '&type=' + x.type + '&page=' + x.page;
     console.log("request:" + r);
     return r;
   }
 
    const searchMovies = async (search) => {
-      route.query = '?s=' + search;
-      route.type = '&type=';
-      route.page = '&page=' + 1;
+      route.query = search;
+      route.page = 1;
       response = await axios.get(request(route));
-      console.log("searchMovies:" + request(route));
       return response;
    }
 
    const searchByType = async (type) => {
+    route.type = type;
+    route.page = 1;
     response = await axios.get(request(route));
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
-    setCurrentPage(1);
-    console.log("handleSubmit:" + request(route));
+    setCurrentPage(route.page);
+    console.log("handleSubmit:" + request(currentPage));
 
    }
 
     const pagination = async (page) => {
+      route.page = page;
       response = await axios.get(request(route)); 
       setMovies(response.data.Search);
       setCurrentPage(page);
@@ -66,11 +67,10 @@ function App() {
       searchMovies(query).then(
         (response) => {
           setSearchTerm(route.query);
-          //setCurrentType(route.type);
+          setCurrentType(route.type);
           setCurrentPage(route.page);
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
-          console.log("total rsults" + totalResults);
          });
        
       //console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
@@ -108,6 +108,9 @@ function App() {
                 <Container>
                   <Navbar.Brand>{totalResults} results for <b>{searchTerm}</b></Navbar.Brand>
                   <Navbar.Toggle />
+                  <Navbar.Text>
+                    <span>{currentType}</span> 
+                  </Navbar.Text>
                   <Navbar.Collapse className="justify-content-end">
                   <Navbar.Text>
                     <span onClick={() => searchByType('movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
