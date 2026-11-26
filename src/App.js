@@ -27,16 +27,7 @@ function App() {
   }
 
    const searchMovies = async (search) => {
-      setSearchTerm(search);
-      setCurrentPage(1);
-      setCurrentType('');
-      setRoute({
-          url: api_url,
-          query: "?s=" + searchTerm,
-          type: "&type=" + currentType,
-          page: "&page=" + currentPage
-        });
-      response = await axios.get(request(route));
+      response = await axios.get(api_url + '?s=' + search);
       console.log("searchMovies:" + request(route));
       return response;
    }
@@ -66,6 +57,16 @@ function App() {
       const query = formData.get('query');
       searchMovies(query).then(
         (response) => {
+          setSearchTerm(query);
+          setCurrentPage(1);
+          setCurrentType('');
+          setRoute({
+          url: api_url,
+          query: "?s=" + searchTerm,
+          type: "&type=" + currentType,
+          page: "&page=" + currentPage
+        });
+          request(route);
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
           console.log("total rsults" + totalResults);
