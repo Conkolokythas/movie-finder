@@ -86,7 +86,7 @@ console.log(reqSend);
    <Row>
       <Col>
         {
-           movies?.length  ? (
+           movies?.length > 0  ? (
             
             <div>
               <Navbar data-bs-theme="dark" className="bg-body-tertiary">
