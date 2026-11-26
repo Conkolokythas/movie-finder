@@ -21,7 +21,7 @@ function App() {
    const [route, setRoute] = useState({ url: api_url, query: ' ', type:  ' ', page: ' '});
 
   const request = (x) => {
-    let r = x.url + x.query + x.type + x.page;
+    let r = x.url + '/' + x.query + '/' + x.type + '/' + x.page;
     console.log("request:" + r);
     return r;
   }
