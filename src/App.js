@@ -93,13 +93,13 @@ function App() {
                   <Navbar.Toggle />
                   <Navbar.Collapse className="justify-content-end">
                   <Navbar.Text>
-                    <span onClick={searchByType(searchTerm, 'movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
+                    <span onClick={() => searchByType(searchTerm, 'movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
                   </Navbar.Text>
                   <Navbar.Text>
-                    <span onClick={searchByType(searchTerm, 'series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
+                    <span onClick={() => searchByType(searchTerm, 'series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
                   </Navbar.Text>
                   <Navbar.Text>
-                    <span onClick={searchByType(searchTerm, 'games')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
+                    <span onClick={() => searchByType(searchTerm, 'games')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
                   </Navbar.Text>
                   </Navbar.Collapse>
                 </Container>
