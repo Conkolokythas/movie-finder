@@ -90,12 +90,11 @@ function App() {
             <div className="search-field">
               <form onSubmit={handleSubmit}>
                 <input type="text" name="query" autocomplete="off"/>
-                <button type="submit">Search</button>
+                <div className="submit">
+                  <button type="submit">Search</button>
+                </div>
               </form>
             </div>
-            <div className="submit">
-              {/*<button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>*/}
-          </div>
        </div>
       </div>
     </Col>

@@ -97,6 +97,21 @@ body {
   border: 1px solid rgba(43, 48, 53, 0.49);
 }
 
+.navbar-text {
+  margin-right: 1em;
+}
+
+.navbar-text span:first-child:hover {
+  text-decoration: underline;
+  color: #62778d;
+  cursor: pointer;
+}
+
+.navbar-text span:first-child:active{
+  text-decoration: underline;
+  color: #62778d;
+}
+
 .dot {
   height: 0.7em;
   width: 0.7em;
