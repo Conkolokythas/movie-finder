@@ -9,36 +9,45 @@ import Col from 'react-bootstrap/Col';
 import './App.css';
 
 const api_url = 'https://m-finder-s.netlify.app';
-const pageRoute = "/page" ;
-const typeRoute = "/type" ;
 let response = null;
 
 function App() {
 
    const [movies, setMovies] = useState([]);
-   const [searchTerm, setSearchTerm] = useState([]);
+   const [searchTerm, setSearchTerm] = useState('');
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
+   const [currentType, setCurrentType] = useState('');
+   const [route, setRoute] = useState({ url: api_url, query: ' ', type:  ' ', page: ' '});
 
-   const searchMovies = async (search) => {
-      response = await axios.get(api_url + '?s=' + search);
+  const request = (x) => {
+    let r = x.url + x.query + x.type + x.page;
+    console.log("request:" + r);
+    return r;
+  }
+
+   const searchMovies = async () => {
+      response = await axios.get(request(route));
+      console.log("handleSubmit:" + request(route));
       return response;
    }
 
-   const searchByType = async (term, type) => {
-    response = await axios.get(api_url + typeRoute + '?s=' + term + '&type=' + type);
+   const searchByType = async (type) => {
+    setRoute({ type: type });
+    response = await axios.get(request(route));
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
     setCurrentPage(1);
-    console.log("searchByType run")
+    console.log("handleSubmit:" + request(route));
 
    }
 
     const pagination = async (page) => {
-      response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
+      setRoute({ page: page });
+      response = await axios.get(request(route)); 
       setMovies(response.data.Search);
       setCurrentPage(page);
-      console.log("pagination run")
+      console.log("handleSubmit:" + request(route));
    }
 
    function handleSubmit(e) {
@@ -47,16 +56,21 @@ function App() {
       const formData = new FormData(form);
       const query = formData.get('query');
       setSearchTerm(query);
-      searchMovies(query).then(
+      setCurrentPage(1);
+      setCurrentType('');
+      setRoute({
+          query: "?s=" + searchTerm,
+          type: "&type=" + currentType,
+          page: "&page=" + currentPage
+        });
+      searchMovies().then(
         (response) => {
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
           console.log("total rsults" + totalResults);
-          setCurrentPage(1);
-          console.log("searchMovies run")
-        });
+         });
        
-      console.log("handleSubmit:" + query);
+      console.log("handleSubmit:" + route);
   }
 
   return (
@@ -93,13 +107,13 @@ function App() {
                   <Navbar.Toggle />
                   <Navbar.Collapse className="justify-content-end">
                   <Navbar.Text>
-                    <span onClick={() => searchByType(searchTerm, 'movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
+                    <span onClick={() => searchByType('movie')}>Movies</span> <span className='dot' style={{ backgroundColor: "#d8af18" }}></span>
                   </Navbar.Text>
                   <Navbar.Text>
-                    <span onClick={() => searchByType(searchTerm, 'series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
+                    <span onClick={() => searchByType('series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
                   </Navbar.Text>
                   <Navbar.Text>
-                    <span onClick={() => searchByType(searchTerm, 'games')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
+                    <span onClick={() => searchByType('games')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
                   </Navbar.Text>
                   </Navbar.Collapse>
                 </Container>
