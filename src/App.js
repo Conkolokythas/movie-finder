@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Card from './components/Card';
-import ResultsHeader from './components/ResultsHeader';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +8,7 @@ import './App.css';
 
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
+const typeRoute = "/type" ;
 let response = null;
 
 function App() {
@@ -23,12 +23,12 @@ function App() {
       return response;
    }
 
-   /*const searchByType = async (term, type) => {
-    response = await axios.get(api_url + '?s=' + term + '&type=' + type);
+   const searchByType = async (term, type) => {
+    response = await axios.get(api_url + typeRoute + '?s=' + term + '&type=' + type);
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
     setCurrentPage(1);
-   }*/
+   }
 
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
@@ -60,18 +60,18 @@ function App() {
   <div className="App">
 
   <Row>
-  <Col>
-  <div className="header">
-    <div className="header-body">
-      <form onSubmit={handleSubmit}>
-        <div className="search-field">
-          <input type="text" name="query" autocomplete="off"/>
-        </div>
-        <div className="submit">
-          {/*<button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>*/}
-            <button type="submit">Search</button>
-        </div>
-        </form>
+    <Col>
+      <div className="header">
+        <div className="header-body">
+            <div className="search-field">
+              <form onSubmit={handleSubmit}>
+                <input type="text" name="query" autocomplete="off"/>
+                <button type="submit">Search</button>
+              </form>
+            </div>
+            <div className="submit">
+              {/*<button type='submit' onClick={() => searchMovies(searchTerm)}>Search</button>*/}
+          </div>
        </div>
       </div>
     </Col>
@@ -83,7 +83,6 @@ function App() {
         {
           movies.length ? (
             <div>
-              <ResultsHeader resultsNum={totalResults} term={searchTerm}>hey</ResultsHeader>
               <div className="results res-col">
                 {movies.map((movie) => ( <Card movie={movie} />))}
               </div>
@@ -110,7 +109,7 @@ function App() {
               </div>
             </div>
             
-          ) : (<ResultsHeader resultsNum={totalResults} term={searchTerm}/>)
+          ) : ( ' ' )
           
         }
         
