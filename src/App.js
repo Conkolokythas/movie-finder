@@ -8,7 +8,7 @@ import './App.css';
 
 const api_url = 'https://m-finder-s.netlify.app';
 const pageRoute = "/page" ;
-const typeRoute = "/type" ;
+//const typeRoute = "/type" ;
 let response = null;
 
 function App() {
@@ -23,11 +23,11 @@ function App() {
       return response;
    }
 
-   const searchByType = async (term, type) => {
+   /*const searchByType = async (term, type) => {
     response = await axios.get(api_url + typeRoute + '?s=' + term + '&type=' + type);
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
-    setCurrentPage(1);
+    setCurrentPage(1);*/
    }
 
     const pagination = async (page) => {
