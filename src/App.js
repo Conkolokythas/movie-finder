@@ -42,7 +42,6 @@ function App() {
    }
 
    const searchByType = async (type) => {
-    setRoute({ type: type });
     response = await axios.get(request(route));
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
@@ -52,7 +51,6 @@ function App() {
    }
 
     const pagination = async (page) => {
-      setRoute({ page: page });
       response = await axios.get(request(route)); 
       setMovies(response.data.Search);
       setCurrentPage(page);
