@@ -33,9 +33,9 @@ function App() {
   }
 
    const searchMovies = async (search) => {
-      route.query = search;
-      route.type = '';
-      route.page = 1;
+      route.query = '?s=' + search;
+      route.type = '&type=';
+      route.page = '&page=' + 1;
       response = await axios.get(request(route));
       console.log("searchMovies:" + request(route));
       return response;
