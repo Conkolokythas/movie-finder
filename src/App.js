@@ -19,11 +19,9 @@ function App() {
    const [searchTerm, setSearchTerm] = useState([]);
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
-   const [reqSend, setReqSend] = useState(false);
 
    const searchMovies = async (search) => {
       response = await axios.get(api_url + '?s=' + search);
-      setReqSend(true);
       return response;
    }
 
@@ -31,7 +29,6 @@ function App() {
     response = await axios.get(api_url + typeRoute + '?s=' + term + '&type=' + type);
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
-    setReqSend(true);
     setCurrentPage(1);
    }
 
@@ -39,7 +36,6 @@ function App() {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
       setMovies(response.data.Search);
       setCurrentPage(page);
-      setReqSend(true);
    }
 
    function handleSubmit(e) {
@@ -60,7 +56,6 @@ function App() {
       console.log("handleSubmit:" + query);
   }
 
-console.log(reqSend);
   return (
   <div className="App">
 
