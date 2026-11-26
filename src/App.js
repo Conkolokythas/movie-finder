@@ -55,6 +55,7 @@ function App() {
       const form = e.target;
       const formData = new FormData(form);
       const query = formData.get('query');
+      console.log(query);
       searchMovies(query).then(
         (response) => {
           setSearchTerm(query);
