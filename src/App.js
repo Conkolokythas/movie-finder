@@ -70,7 +70,7 @@ function App() {
           console.log("total rsults" + totalResults);
          });
        
-      console.log("handleSubmit:" + route);
+      console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
   }
 
   return (
