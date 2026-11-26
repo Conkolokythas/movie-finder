@@ -30,12 +30,15 @@ function App() {
     setMovies(response.data.Search);
     setTotalResults(response.data.totalResults);
     setCurrentPage(1);
+    console.log("searchByType run")
+
    }
 
     const pagination = async (page) => {
       response = await axios.get(api_url + pageRoute + '?s=' + searchTerm + '&page=' + page);
       setMovies(response.data.Search);
       setCurrentPage(page);
+      console.log("pagination run")
    }
 
    function handleSubmit(e) {
@@ -50,7 +53,7 @@ function App() {
           setTotalResults(response.data.totalResults);
           console.log("total rsults" + totalResults);
           setCurrentPage(1);
-          console.log(response)
+          console.log("searchMovies run")
         });
        
       console.log("handleSubmit:" + query);
