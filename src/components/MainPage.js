@@ -44,7 +44,7 @@ function MainPage()  {
                 <Col>
                     <Card className="bg-dark text-white" style={cardStyle}>
                         <Card.Body>
-                            <Card.Title>Card Title</Card.Title>
+                            <Card.Title>Wellcome to MovieFinder</Card.Title>
                             <Card.Text>
                                 This is a showcase application that helps users find information about movies, series and video games.
                             </Card.Text>
