@@ -18,7 +18,7 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
    const [currentType, setCurrentType] = useState('');
-   //const [responseState, setResponseState] = useState(false);
+   const [responseState, setResponseState] = useState('');
    
 
    const route = { 
@@ -77,7 +77,7 @@ function App() {
           setCurrentPage(route.page);
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
-          //setResponseState(response.data.Response);
+          setResponseState(response.data.Response);
          });
        
       //console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
@@ -108,7 +108,7 @@ function App() {
    <Row>
       <Col>
         {
-           totalResults > 0  ? (
+           responseState === "True"  ? (
             
             <div>
               <Navbar data-bs-theme="dark" className="bg-body-tertiary">
@@ -161,7 +161,7 @@ function App() {
           ) : (  
             <Navbar data-bs-theme="dark" className="bg-body-tertiary">
               <Container>
-                <Navbar.Brand>No results for: <b>{searchTerm}</b></Navbar.Brand> : 
+                <Navbar.Brand>No results for: <b>{searchTerm}</b></Navbar.Brand> : All types
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                   <Navbar.Text>

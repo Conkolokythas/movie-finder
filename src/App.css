@@ -30,6 +30,10 @@ body {
 }
 
 .header-body {
+  padding: 0 1em 0 1em;
+}
+
+.header-body form {
   display: flex;
 }
 
