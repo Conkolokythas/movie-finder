@@ -129,7 +129,7 @@ function App() {
                     <span onClick={() => searchByType('series')}>Series</span> <span className='dot' style={{ backgroundColor: "#1852d8" }}></span>
                   </Navbar.Text>
                   <Navbar.Text>
-                    <span onClick={() => searchByType('games')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
+                    <span onClick={() => searchByType('game')}>Games</span> <span className='dot' style={{ backgroundColor: "#8a2be2" }}></span>
                   </Navbar.Text>
                   </Navbar.Collapse>
                 </Container>
