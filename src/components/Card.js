@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import imdbLogo from './imdb.svg';
-import noImage from './no-img.png';
+import noImage from './images/no-img.png';
 import axios from 'axios';
 
 
