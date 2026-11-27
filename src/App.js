@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Card from './components/Card';
+import MainPage from './components/MainPage';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -174,7 +175,7 @@ function App() {
           ) 
           : 
           (  
-          <p>Hello this is my app</p>
+          <MainPage/>
           )
         }
         
