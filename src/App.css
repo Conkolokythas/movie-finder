@@ -8,6 +8,11 @@ body {
     color: #ffffff;
 }
 
+#root {
+  width: 100%;
+  max-width: 1000px;
+}
+
 #wellcome img {
   width: 100%;
   max-width: 300px;

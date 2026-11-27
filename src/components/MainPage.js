@@ -16,7 +16,7 @@ function MainPage()  {
     return (
         <Container id="wellcome" className="res-col">
             <Row>
-                <Col>
+                <Col sm={4}>
                 <Carousel>
                     <Carousel.Item interval={3000}>
                         <img
@@ -41,7 +41,7 @@ function MainPage()  {
                     </Carousel.Item>
                 </Carousel>
                 </Col>
-                <Col>
+                <Col sm={8}>
                     <Card className="bg-dark text-white" style={cardStyle}>
                         <Card.Body>
                             <Card.Title>Wellcome to MovieFinder</Card.Title>
@@ -57,7 +57,7 @@ function MainPage()  {
                             As you browsing  app, you will notice that some results may display shortages such as images and information. 
                             In addition, some title posters can not be retrieved from server. 
                             API is still under development and thus it is possible to encounter such issues. 
-                            <b>Have fun using the app!</b>       
+                             <b>Have fun using the app!</b>       
                         </Card.Text>
                         </Card.Body>
                     </Card>
