@@ -9,6 +9,10 @@ import game from './images/gta.png';
 
 function MainPage()  {
 
+    const cardStyle = {
+        marginTop: "1rem"
+    };
+
     return (
         <Container id="wellcome" className="res-col">
             <Row>
@@ -16,21 +20,21 @@ function MainPage()  {
                 <Carousel>
                     <Carousel.Item interval={3000}>
                         <img
-                            className="d-block w-100"
+                            className="d-block"
                             src={movie}
                             alt="movie"
                             />
                     </Carousel.Item>
                     <Carousel.Item interval={3000}>
                         <img
-                            className="d-block w-100"
+                            className="d-block"
                             src={serie}
                             alt="serie"
                             />
                     </Carousel.Item>
                     <Carousel.Item  interval={3000}>
                         <img
-                            className="d-block w-100"
+                            className="d-block"
                             src={game}
                             alt="game"
                             />
@@ -38,7 +42,7 @@ function MainPage()  {
                 </Carousel>
                 </Col>
                 <Col>
-                    <Card data-bs-theme="dark">
+                    <Card className="bg-dark text-white" style={cardStyle}>
                         <Card.Body>
                             <Card.Title>Card Title</Card.Title>
                             <Card.Text>
@@ -46,13 +50,13 @@ function MainPage()  {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card border="info">
+                    <Card border="info" className="bg-dark text-white" style={cardStyle}>
                         <Card.Body>
                         <Card.Title>Read this before use!</Card.Title>
                         <Card.Text>
-                            As you browsing, you will notice that some results may display shortages such as images and information. 
+                            As you browsing  app, you will notice that some results may display shortages such as images and information. 
                             In addition, some title posters can not be retrieved from server. 
-                            API is still under development and thus it is possible to encounter such issues.
+                            API is still under development and thus it is possible to encounter such issues. 
                             <b>Have fun using the app!</b>       
                         </Card.Text>
                         </Card.Body>
