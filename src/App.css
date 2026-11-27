@@ -79,6 +79,10 @@ body {
   text-align: center;
 }
 
+.res-board {
+  display: flex;
+  flex-direction: column;
+}
 
 .results {
   display: flex;

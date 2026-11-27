@@ -18,7 +18,8 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
    const [currentType, setCurrentType] = useState('');
-   const [responseState, setResponseState] = useState('');
+   const [requestSend, setRequestSend] = useState(false);
+   const [navHeader, setNavHeader] = useState('');
    
 
    const route = { 
@@ -28,12 +29,16 @@ function App() {
     page: ''
   };
 
-  const request = (x) => {
-    let r = x.url + '?s=' + x.query + '&type=' + x.type + '&page=' + x.page;
-    console.log("request:" + r);
-    return r;
+  function checkRequestEvent(reslResults){
+    if(reslResults > 0){
+        setNavHeader(reslResults + " results for " + route.query);
+      } else {
+        setNavHeader("No results for: " + route.query);
+      }
   }
 
+  const request = (x) => x.url + '?s=' + x.query + '&type=' + x.type + '&page=' + x.page;
+  
    const searchMovies = async (term) => {
       route.query = term;
       route.page = 1;
@@ -51,6 +56,7 @@ function App() {
     setTotalResults(response.data.totalResults);
     setCurrentPage(route.page);
     setCurrentType(route.type);
+    checkRequestEvent(response.data.totalResults);
     console.log("handleSubmit:" + request(currentPage));
    }
 
@@ -61,7 +67,6 @@ function App() {
       response = await axios.get(request(route)); 
       setMovies(response.data.Search);
       setCurrentPage(page);
-      console.log("handleSubmit:" + request(route));
    }
 
    function handleSubmit(e) {
@@ -69,7 +74,6 @@ function App() {
       const form = e.target;
       const formData = new FormData(form);
       const query = formData.get('query');
-      console.log(query);
       searchMovies(query).then(
         (response) => {
           setSearchTerm(route.query);
@@ -77,11 +81,10 @@ function App() {
           setCurrentPage(route.page);
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
-          setResponseState(response.data.Response);
+          setRequestSend(true);
+          checkRequestEvent(response.data.totalResults);
          });
-       
-      //console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
-  }
+    }
 
   return (
   <div className="App">
@@ -108,12 +111,12 @@ function App() {
    <Row>
       <Col>
         {
-           responseState === "True"  ? (
+           requestSend  ? (
             
             <div>
               <Navbar data-bs-theme="dark" className="bg-body-tertiary">
                 <Container>
-                  <Navbar.Brand>{totalResults} results for <b>{searchTerm}</b></Navbar.Brand>
+                  <Navbar.Brand>{navHeader}</Navbar.Brand>
                   <Navbar.Toggle />
                   <Navbar.Text>
                     <span>{currentType}</span> 
@@ -131,46 +134,48 @@ function App() {
                   </Navbar.Collapse>
                 </Container>
               </Navbar>
-
-              <div className="results res-col">
-                {movies.map((movie) => ( <Card movie={movie} />))}
-              </div>
-              <div className='pag-tab'>  
-                <div className='pagination'>                  
-                <span>Total titles found{ totalResults }</span>
-                <button onClick={() => pagination(1)}>{'<<'}</button>
-                {
-                  currentPage === 1 ?
-                  (<button disabled>{'<'}</button>) 
-                  : 
-                  (<button onClick={() => pagination(currentPage - 1)}>{'<'}</button>)
-                }
-                <input type="number" placeholder="..." min="1" max={ Math.ceil(totalResults/10) } value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
-                {
-                  currentPage === Math.ceil(totalResults/10) ?
-                  (<button disabled>{'>'}</button>) 
-                  : 
-                  (<button onClick={() => pagination(currentPage + 1)}>{'>'}</button>)
-                }
-                <button onClick={() => pagination(Math.ceil(totalResults/10))}>{'>>'}</button>
-                <span>{ Math.ceil(totalResults/10) }</span>
-                </div> 
-              </div>
+              {
+                totalResults > 0 ?
+                (
+                  <div className='res-board'>
+                    <div className="results res-col">
+                      {movies.map((movie) => ( <Card movie={movie} />))}
+                    </div>
+                    <div className='pag-tab'>  
+                      <div className='pagination'>                  
+                        <span>Total titles found{ totalResults }</span>
+                        <button onClick={() => pagination(1)}>{'<<'}</button>
+                        {
+                          currentPage === 1 ?
+                          (<button disabled>{'<'}</button>) 
+                          : 
+                          (<button onClick={() => pagination(currentPage - 1)}>{'<'}</button>)
+                        }
+                        <input type="number" placeholder="..." min="1" max={ Math.ceil(totalResults/10) } value={currentPage} onChange={(e) => { pagination(e.target.valueAsNumber) }}/>
+                        {
+                          currentPage === Math.ceil(totalResults/10) ?
+                          (<button disabled>{'>'}</button>) 
+                          : 
+                          (<button onClick={() => pagination(currentPage + 1)}>{'>'}</button>)
+                        }
+                        <button onClick={() => pagination(Math.ceil(totalResults/10))}>{'>>'}</button>
+                        <span>{ Math.ceil(totalResults/10) }</span>
+                      </div> 
+                    </div>
+                  </div>  
+                ) 
+                : 
+                ('')
+              }
+              
+              
             </div>
             
-          ) : (  
-            <Navbar data-bs-theme="dark" className="bg-body-tertiary">
-              <Container>
-                <Navbar.Brand>No results for: <b>{searchTerm}</b></Navbar.Brand> : All types
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                  <Navbar.Text>
-                  </Navbar.Text>
-                </Navbar.Collapse>
-              </Container>
-            </Navbar>
-             )
-          
+          ) 
+          : 
+          (  
+          <p>Hello this is my app</p>
+          )
         }
         
       </Col>
