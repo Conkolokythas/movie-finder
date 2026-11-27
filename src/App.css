@@ -8,6 +8,10 @@ body {
     color: #ffffff;
 }
 
+.wellcome img {
+  width: 100%;
+  max-width: 300px;
+}
 
 .top {
   text-align: center;
