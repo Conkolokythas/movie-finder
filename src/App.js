@@ -18,6 +18,7 @@ function App() {
    const [totalResults, setTotalResults] = useState(0);
    const [currentPage, setCurrentPage] = useState(0);
    const [currentType, setCurrentType] = useState('');
+   //const [responseState, setResponseState] = useState(false);
    
 
    const route = { 
@@ -37,6 +38,7 @@ function App() {
       route.query = term;
       route.page = 1;
       response = await axios.get(request(route));
+      console.log(response);
       return response;
    }
 
@@ -75,6 +77,7 @@ function App() {
           setCurrentPage(route.page);
           setMovies(response.data.Search);
           setTotalResults(response.data.totalResults);
+          //setResponseState(response.data.Response);
          });
        
       //console.log("handleSubmit:" + route.url + '/' + route.query + '/' + route.type + '/' + route.page);
@@ -87,14 +90,15 @@ function App() {
     <Col>
       <div className="header">
         <div className="header-body">
-            <div className="search-field">
               <form onSubmit={handleSubmit}>
-                <input type="text" name="query" autocomplete="off"/>
+                <div className="search-field">
+                  <input type="text" name="query" autocomplete="off"/>
+                </div>
                 <div className="submit">
                   <button type="submit">Search</button>
                 </div>
               </form>
-            </div>
+            
        </div>
       </div>
     </Col>
@@ -171,7 +175,6 @@ function App() {
         
       </Col>
     </Row>
-        
   </div> );
 }//App
 
